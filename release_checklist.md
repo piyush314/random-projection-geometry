@@ -1,6 +1,6 @@
 # Release checklist
 
-- [ ] ORNL/UT-Battelle software release clearance for this repository
+- [x] ORNL/UT-Battelle software release clearance for this repository
       (separate from the manuscript's DOE publication notice; confirm the
       license text above matches the approved release terms)
 - [ ] All verification checks green in CI (`python verification/run_all.py`)
