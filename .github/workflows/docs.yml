@@ -26,10 +26,13 @@ jobs:
       - name: Render site
         run: quarto render docs
       - uses: actions/configure-pages@v5
+        if: github.event.repository.visibility == 'public'
       - uses: actions/upload-pages-artifact@v3
+        if: github.event.repository.visibility == 'public'
         with:
           path: docs/_site
   deploy:
+    if: github.event.repository.visibility == 'public'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
