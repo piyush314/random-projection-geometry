@@ -1,0 +1,24 @@
+---
+title: "03 · Nearest neighbors and plurality stability"
+description: "Understand the fixed-candidate common-argmin law."
+---
+
+Pairwise agreements share a query and are dependent, so multiplying or adding
+pairwise probabilities is wrong. In the fixed-candidate limit, the original and
+projected score vectors become correlated Gaussian vectors. Their common-argmin
+probability is the plurality kernel `p_q(rho)`.
+
+```python
+import numpy as np
+from rpgeom.laws import plurality_kernel
+rho = np.sqrt(20 / 10_000)
+print(plurality_kernel(rho, q=8), "versus chance", 1/8)
+```
+
+The candidate count `q` is fixed in this theorem. Growing databases and hub
+identity require different asymptotics; the project labels that boundary rather
+than silently extrapolating.
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/03_nearest_neighbor_plurality.ipynb)
+
+**Next:** [see why covariance alignment changes nonlinear recovery](04-anisotropy.qmd).

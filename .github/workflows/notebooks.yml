@@ -1,0 +1,44 @@
+name: notebooks
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "notebooks/**"
+      - "src/**"
+      - "pyproject.toml"
+      - ".github/workflows/notebooks.yml"
+  pull_request:
+    paths:
+      - "notebooks/**"
+      - "src/**"
+      - "pyproject.toml"
+      - ".github/workflows/notebooks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e ".[dev]"
+      - name: Execute tutorial notebooks from clean kernels
+        run: |
+          mkdir -p /tmp/rpgeom-notebooks
+          for notebook in notebooks/tutorials/*.ipynb notebooks/reproduction/*.ipynb; do
+            jupyter nbconvert --to notebook --execute "$notebook" \
+              --output-dir /tmp/rpgeom-notebooks \
+              --ExecutePreprocessor.timeout=600
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: executed-notebooks
+          path: /tmp/rpgeom-notebooks/*.ipynb

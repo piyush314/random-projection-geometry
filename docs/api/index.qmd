@@ -1,0 +1,46 @@
+---
+title: "Python and CLI API"
+description: "Stable entry points, report schemas, and lower-level mathematical functions."
+---
+
+## High-level API
+
+### `budget(d, m, q=None, spectrum=None)`
+
+Returns a `BudgetReport` with exact isotropic laws and optional spectrum-aware
+diagnostics. `to_dict()` is JSON serializable and conforms to
+`schemas/budget-report.schema.json`.
+
+### `audit(X, m, q=10, n_trials=2000, rng=None)`
+
+Returns an `AuditReport`. Rows of `X` are observations. Randomness is entirely
+controlled by the supplied NumPy generator.
+
+### `recommend_dimension(d, **targets)`
+
+Returns the smallest `m < d` meeting all targets. Available targets are
+`hgr_capacity`, `pairwise_agreement`, `kendall_tau`, `nearest_neighbor`, and
+`shape_information`. Set `q` for a nearest-neighbor target.
+
+## Command line
+
+```text
+rpgeom budget --d D --m M [--q Q] [--spectrum FILE] [--json]
+rpgeom recommend --d D [TARGET OPTIONS] [--json]
+rpgeom audit MATRIX --m M [--q Q] [--trials N] [--seed S] [--json]
+rpgeom verify [--full]
+rpgeom reproduce-paper [--full] [--output DIR]
+```
+
+## Mathematical modules
+
+- `rpgeom.ceilings`: HGR, spectral recovery shares, Laguerre modes, information ratios.
+- `rpgeom.laws`: pairwise, Kendall, plurality, and coupling laws.
+- `rpgeom.channels`: beta–gamma samples and exact-moment polynomial CCA.
+- `rpgeom.maps`: Haar frames, Gaussian stages, and chains.
+- `rpgeom.ensembles`: stacking, averaging, condition-number, and alignment diagnostics.
+- `rpgeom.mmse`: noisy singular-direction recovery and hard-edge examples.
+- `rpgeom.plotting`: reusable publication plotting defaults.
+
+All public numerical functions reject invalid dimensions instead of silently
+returning NaNs. Array inputs require finite values.

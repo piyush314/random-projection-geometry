@@ -1,0 +1,72 @@
+---
+title: "Fine-geometry calculator"
+description: "Compute exact Gaussian-model budgets entirely in your browser."
+toc: false
+---
+
+Change the dimensions below. The calculation runs locally through Pyodide;
+values are not sent to a server. The first load downloads the scientific Python
+runtime.
+
+::: {.calculator}
+<label for="calc-d">Ambient dimension d</label>
+<input id="calc-d" type="number" min="2" value="768">
+<label for="calc-m">Sketch dimension m</label>
+<input id="calc-m" type="number" min="1" value="64">
+<label for="calc-q">Candidate count q</label>
+<input id="calc-q" type="number" min="2" value="10">
+<button id="calc-run">Compute exact budget</button>
+<p id="calc-status" aria-live="polite">Runtime not loaded yet.</p>
+<div id="calc-result" class="metric-grid"></div>
+:::
+
+```{=html}
+<script type="module">
+import { loadPyodide } from "https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.mjs";
+const status = document.getElementById("calc-status");
+status.textContent = "Loading scientific Python…";
+const pyodide = await loadPyodide();
+await pyodide.loadPackage(["numpy", "scipy"]);
+status.textContent = "Ready.";
+
+document.getElementById("calc-run").addEventListener("click", async () => {
+  const d = Number(document.getElementById("calc-d").value);
+  const m = Number(document.getElementById("calc-m").value);
+  const q = Number(document.getElementById("calc-q").value);
+  if (!(d > m && m > 0 && q >= 2)) {
+    status.textContent = "Use integers satisfying 0 < m < d and q ≥ 2.";
+    return;
+  }
+  status.textContent = "Computing quadrature…";
+  pyodide.globals.set("d", d); pyodide.globals.set("m", m); pyodide.globals.set("q", q);
+  const raw = await pyodide.runPythonAsync(`
+import json, math
+from scipy.integrate import quad
+from scipy.special import betaln, gammaln, digamma
+a, b = m/2, (d-m)/2
+f = lambda x: math.asin(math.sqrt(x))*math.exp((a-1)*math.log(x)+(b-1)*math.log1p(-x)-betaln(a,b))
+pair = .5 + quad(f, 0, 1, points=[0,1], limit=300)[0]/math.pi
+h = lambda k: k/2+math.log(2)+gammaln(k/2)+(1-k/2)*digamma(k/2)
+json.dumps({
+  "HGR ceiling": math.sqrt(m/d),
+  "mutual information (nats)": h(d)-h(d-m),
+  "pairwise agreement": pair,
+  "expected Kendall tau": 2*pair-1,
+  "mean / scale information": m/d,
+  "shape information": (m-1)*(m+2)/((d-1)*(d+2)),
+  "nearest-neighbor chance": 1/q
+})`);
+  const values = JSON.parse(raw);
+  document.getElementById("calc-result").innerHTML = Object.entries(values)
+    .map(([label,value]) => `<div class="metric-card"><div class="value">${value.toFixed(5)}</div>${label}</div>`)
+    .join("");
+  status.textContent = "Exact finite-dimensional budget computed. Nearest-neighbor chance is shown; use Python for p_q.";
+});
+</script>
+```
+
+::: {.callout-note}
+The browser calculator evaluates the exact pairwise law but deliberately does
+not hide model assumptions. For the nearest-neighbor Gaussian-score kernel,
+spectrum-aware quantities, batch reports, or real data, use `rpgeom` in Python.
+:::

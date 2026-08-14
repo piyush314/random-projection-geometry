@@ -1,0 +1,24 @@
+---
+title: "04 · Anisotropy and nonlinear excess"
+description: "Distinguish distance-value recovery from arbitrary-feature recovery."
+---
+
+For covariance eigenvalues `lambda_j`, the best rank-`m` recovery of the
+distance value captures the leading share of squared-eigenvalue mass:
+
+$$\alpha_m=\frac{\sum_{j\le m}\lambda_j^2}{\sum_j\lambda_j^2}.$$
+
+That statement does **not** automatically bound every nonlinear feature. Unequal
+retention across eigenspaces can create nonlinear excess. Equal fractional
+retention across every spectral block restores the clean ceiling.
+
+```python
+import numpy as np
+from rpgeom.ceilings import alpha_m, alpha_pi
+print(alpha_m(np.array([4., 1., 1., 1.]), m=1))
+print(alpha_pi(lam=[4., 1.], r=[20, 40], s=[5, 10]))
+```
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/04_anisotropy.ipynb)
+
+**Next:** [compare the linear and quadratic information-contraction rates](05-shape.qmd).

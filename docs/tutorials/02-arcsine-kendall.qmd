@@ -1,0 +1,22 @@
+---
+title: "02 · The arcsine law and Kendall correlation"
+description: "Compute the exact probability that one comparison survives."
+---
+
+For a Haar row space, the squared projected length fraction is beta distributed.
+Conditional on that fraction, a Gaussian sign-agreement identity gives an
+arcsine law. Averaging yields the exact finite-`m,d` probability `p_{m,d}`.
+
+```python
+from rpgeom.laws import pairwise_agreement, kendall_tau
+for m in (5, 20, 100):
+    print(m, pairwise_agreement(m, 200), kendall_tau(m, 200))
+```
+
+Expected Kendall tau is simply `2 p_{m,d} - 1`. For small retained fraction it
+is approximately `(2/pi) sqrt(m/d)`, which can be small even when a JL dimension
+is logarithmic in sample size.
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/02_arcsine_kendall.ipynb)
+
+**Next:** [move from pairwise order to a common argmin](03-nearest-neighbor.qmd).

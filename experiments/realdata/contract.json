@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "name": "realdata",
+  "inputs": {"matrix": "n by d .npy/.csv/text", "m": 32, "q": 10, "trials": 2000, "seed": 0},
+  "outputs": ["audit.json", "audit.meta.json"],
+  "determinism": "Fixed matrix plus seed gives identical sampled indices and Haar map.",
+  "success": "The report is valid against schemas/audit-report.schema.json."
+}

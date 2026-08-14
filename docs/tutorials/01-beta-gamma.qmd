@@ -1,0 +1,25 @@
+---
+title: "01 · Beta–gamma channel and Laguerre modes"
+description: "Turn a projected Gaussian distance into an exact scalar channel."
+---
+
+After reversible row orthonormalization, write
+
+$$T=U+V,\qquad U\sim\chi_m^2,\quad V\sim\chi_{d-m}^2,$$
+
+with `U` and `V` independent. The observed direction contains no additional
+information about `T`, so recovery reduces to observing `U` from `T`.
+
+```python
+from rpgeom.ceilings import hgr_isotropic, laguerre_singvals, mutual_info
+print(hgr_isotropic(64, 768))
+print(laguerre_singvals(64, 768, kmax=5) ** 2)
+print(mutual_info(64, 768))
+```
+
+The first Laguerre mode is the centered distance. Higher modes are progressively
+harder: at fixed mode `k`, their recoverable variance is asymptotic to `(m/d)^k`.
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/01_beta_gamma_laguerre.ipynb)
+
+**Next:** [turn the retained fraction into an order probability](02-arcsine-kendall.qmd).

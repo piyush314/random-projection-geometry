@@ -1,0 +1,10 @@
+{
+  "title": "Random Projection Geometry: exact laws, diagnostics, and reproducible experiments",
+  "description": "Companion software, executable tutorials, and theorem checks for Exact Limits of Random Projections for Preserving Geometry.",
+  "creators": [{"name": "Sao, Piyush"}],
+  "license": "MIT",
+  "upload_type": "software",
+  "keywords": ["random projections", "Johnson-Lindenstrauss", "nearest neighbors", "dimension reduction", "reproducibility"],
+  "access_right": "open",
+  "related_identifiers": []
+}

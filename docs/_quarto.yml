@@ -1,0 +1,57 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Random Projection Geometry"
+  description: "Exact laws, diagnostics, and reproducible experiments for the geometry hidden below a JL guarantee."
+  site-url: https://piyush314.github.io/random-projection-geometry/
+  repo-url: https://github.com/piyush314/random-projection-geometry
+  repo-actions: [edit, issue]
+  favicon: assets/mark.svg
+  navbar:
+    logo: assets/mark.svg
+    left:
+      - href: index.qmd
+        text: Home
+      - href: start.qmd
+        text: Start
+      - href: concepts.qmd
+        text: Concepts
+      - href: calculator.qmd
+        text: Calculator
+      - href: tutorials/index.qmd
+        text: Tutorials
+      - href: reproduction.qmd
+        text: Reproduce
+      - href: theorems.qmd
+        text: Theorems
+      - href: api/index.qmd
+        text: API
+    right:
+      - icon: github
+        href: https://github.com/piyush314/random-projection-geometry
+  page-footer:
+    left: "MIT licensed · companion to *Exact Limits of Random Projections for Preserving Geometry*"
+    right:
+      - href: cite.qmd
+        text: Cite
+      - href: faq.qmd
+        text: FAQ
+
+format:
+  html:
+    theme: [cosmo, assets/theme.scss]
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    anchor-sections: true
+    include-in-header:
+      text: |
+        <meta name="theme-color" content="#13213c">
+
+execute:
+  freeze: auto
+  warning: false
+
+bibliography: references.bib

@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "name": "finite_m",
+  "inputs": {"d": 400, "q": 8, "m_values": "geometric grid below d"},
+  "outputs": ["finite_m.csv", "finite_m.meta.json"],
+  "determinism": "Deterministic quadrature; no random seed is used.",
+  "success": "Every probability lies in [0,1] and m is strictly increasing."
+}

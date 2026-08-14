@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rpgeom"
+version = "0.1.0"
+description = "Audit and explain what random projections preserve beyond pairwise distances"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Piyush Sao" }]
+dependencies = ["numpy>=1.24", "scipy>=1.10", "sympy>=1.12"]
+keywords = ["random projections", "johnson-lindenstrauss", "nearest neighbors", "geometry", "dimension reduction"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.urls]
+Homepage = "https://piyush314.github.io/random-projection-geometry/"
+Repository = "https://github.com/piyush314/random-projection-geometry"
+Issues = "https://github.com/piyush314/random-projection-geometry/issues"
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2",
+  "jupyter>=1.0",
+  "matplotlib>=3.7",
+  "nbclient>=0.10",
+  "nbformat>=5.10",
+  "pytest>=7",
+  "ruff>=0.6",
+]
+docs = ["jupyter>=1.0", "matplotlib>=3.7"]
+
+[project.scripts]
+rpgeom = "rpgeom.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = [
+  "B905",  # plotting helpers intentionally accept parallel iterables of unequal provenance
+  "E501",  # mathematical labels and CLI output are clearer when kept intact
+  "E731",  # short quadrature integrands read naturally as local functions
+]

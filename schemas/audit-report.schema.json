@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piyush314.github.io/random-projection-geometry/schemas/audit-report.schema.json",
+  "title": "rpgeom data audit report",
+  "type": "object",
+  "required": ["n", "d", "m", "q", "r2", "alpha_m", "pred_pairwise", "meas_pairwise", "meas_pairwise_se", "pred_nn", "meas_nn", "meas_nn_se"],
+  "properties": {
+    "n": {"type": "integer", "minimum": 1},
+    "d": {"type": "integer", "minimum": 2},
+    "m": {"type": "integer", "minimum": 1},
+    "q": {"type": "integer", "minimum": 2},
+    "r2": {"type": "number", "minimum": 1},
+    "alpha_m": {"type": "number", "minimum": 0, "maximum": 1},
+    "pred_pairwise": {"type": "number", "minimum": 0.5, "maximum": 1},
+    "meas_pairwise": {"type": "number", "minimum": 0, "maximum": 1},
+    "meas_pairwise_se": {"type": "number", "minimum": 0},
+    "pred_nn": {"type": "number", "minimum": 0, "maximum": 1},
+    "meas_nn": {"type": "number", "minimum": 0, "maximum": 1},
+    "meas_nn_se": {"type": "number", "minimum": 0}
+  },
+  "additionalProperties": false
+}

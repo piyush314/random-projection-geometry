@@ -1,0 +1,43 @@
+---
+title: "Reproduce the paper"
+description: "One command for the tables and figures; one script per theorem for inspection."
+---
+
+## Fast confidence check
+
+```bash
+python verification/run_all.py
+```
+
+The suite uses symbolic identities, exact moments, deterministic quadrature,
+and seeded Monte Carlo. It is organized by theorem so a reader can inspect the
+claim without trusting the user-facing library.
+
+## Regenerate manuscript artifacts
+
+```bash
+rpgeom reproduce-paper --output artifacts/paper
+rpgeom reproduce-paper --full --output artifacts/paper
+```
+
+The archival command writes CSV files, LaTeX table rows, five PDF figures, and
+a SHA-256 manifest. Smoke scale is the default; `--full` uses manuscript sample
+sizes.
+
+## Four experiment families
+
+- **Paper tables:** the archival manuscript bundle.
+- **Finite m:** exact laws versus small-ratio approximations.
+- **Anisotropic HGR:** exact-moment polynomial canonical correlations.
+- **Real data:** a seeded audit of a supplied feature matrix.
+
+Every family has a `contract.json` declaring inputs, outputs, determinism, and
+success criteria. This makes differences between a theorem check, a numerical
+illustration, and a data diagnostic visible in the repository itself.
+
+## Provenance boundary
+
+The companion repository owns source code and notebooks. The manuscript
+repository retains publication-ready generated PDFs and the LaTeX verification
+table. The parent pins this repository as a Git submodule, so a paper revision
+always identifies the exact code commit that produced its assets.

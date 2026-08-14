@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piyush314.github.io/random-projection-geometry/schemas/budget-report.schema.json",
+  "title": "rpgeom budget report",
+  "type": "object",
+  "required": ["d", "m", "hgr_ceiling", "mutual_info_nats", "pairwise_agreement", "kendall_tau", "mean_ratio", "shape_ratio", "notes"],
+  "properties": {
+    "d": {"type": "integer", "minimum": 2},
+    "m": {"type": "integer", "minimum": 1},
+    "q": {"type": ["integer", "null"], "minimum": 2},
+    "hgr_ceiling": {"type": "number", "minimum": 0, "maximum": 1},
+    "mutual_info_nats": {"type": "number", "minimum": 0},
+    "pairwise_agreement": {"type": "number", "minimum": 0.5, "maximum": 1},
+    "kendall_tau": {"type": "number", "minimum": 0, "maximum": 1},
+    "nn_agreement": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "nn_chance": {"type": ["number", "null"], "minimum": 0, "maximum": 0.5},
+    "mean_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "shape_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "alpha_m": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "spectrum_r2": {"type": ["number", "null"], "minimum": 1},
+    "notes": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}

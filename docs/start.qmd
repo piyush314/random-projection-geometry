@@ -1,0 +1,53 @@
+---
+title: "Start here"
+description: "Install rpgeom, compute a budget, and audit a matrix."
+---
+
+## Install
+
+```bash
+git clone https://github.com/piyush314/random-projection-geometry.git
+cd random-projection-geometry
+python -m pip install -e ".[dev]"
+pytest -q
+```
+
+The package requires Python 3.10+ and runs on CPU. Until the public PyPI
+release, an editable Git checkout is the canonical installation.
+
+## 1. Ask what a sketch can retain
+
+```bash
+rpgeom budget --d 768 --m 64 --q 10
+rpgeom budget --d 768 --m 64 --q 10 --json
+```
+
+`hgr_ceiling` is a correlation ceiling, while `shape_ratio` and `mean_ratio`
+are information fractions. The report labels these different units explicitly.
+
+## 2. Choose a dimension from a target
+
+```bash
+rpgeom recommend --d 768 --kendall-tau 0.30
+rpgeom recommend --d 768 --q 10 --nearest-neighbor 0.35
+```
+
+The returned `m` is the smallest integer satisfying every supplied target under
+the stated Gaussian model. Treat it as a principled baseline, then audit data.
+
+## 3. Audit your matrix
+
+```bash
+rpgeom audit embeddings.npy --m 64 --q 10 --trials 5000 --seed 7 --json
+```
+
+Rows are observations and columns are features. The audit centers the matrix,
+reports its spectral trace ratio and leading-eigenspace recovery share, draws a
+seeded Haar subspace, and measures comparison and neighbor survival.
+
+## 4. Pick your next route
+
+- New to the problem? Follow the [tutorial path](tutorials/index.qmd).
+- Reproducing the article? Use the [reproduction guide](reproduction.qmd).
+- Integrating a pipeline? Read the [API contract](api/index.qmd).
+- Unsure how to interpret a number? Start with the [FAQ](faq.qmd).

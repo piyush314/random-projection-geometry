@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://piyush314.github.io/random-projection-geometry/schemas/dimension-recommendation.schema.json",
+  "title": "rpgeom dimension recommendation",
+  "type": "object",
+  "required": ["d", "m", "q", "retained_fraction", "targets", "achieved", "assumptions"],
+  "properties": {
+    "d": {"type": "integer", "minimum": 2},
+    "m": {"type": "integer", "minimum": 1},
+    "q": {"type": ["integer", "null"], "minimum": 2},
+    "retained_fraction": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1},
+    "targets": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}},
+    "achieved": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0, "maximum": 1}},
+    "assumptions": {"type": "string"}
+  },
+  "additionalProperties": false
+}

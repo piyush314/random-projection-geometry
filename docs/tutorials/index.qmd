@@ -1,0 +1,26 @@
+---
+title: "Tutorial path"
+description: "Nine executable lessons, from the JL illusion to choosing m."
+---
+
+The lessons form a narrative, but each can stand alone. Every page has a
+matching executable notebook under `notebooks/tutorials/`.
+
+| # | Lesson | What you will be able to do |
+|---:|---|---|
+| 00 | [The JL illusion](00-jl-illusion.qmd) | Separate baseline preservation from fluctuation preservation |
+| 01 | [Beta–gamma and Laguerre](01-beta-gamma.qmd) | Read the exact scalar channel and its spectrum |
+| 02 | [Arcsine and Kendall](02-arcsine-kendall.qmd) | Compute pairwise and ranking survival |
+| 03 | [Nearest neighbor and plurality](03-nearest-neighbor.qmd) | Interpret fixed-candidate argmin stability |
+| 04 | [Anisotropy](04-anisotropy.qmd) | Diagnose nonlinear excess and balanced retention |
+| 05 | [Covariance shape](05-shape.qmd) | Compare mean, scale, and shape contraction |
+| 06 | [General maps and ensembles](06-maps-ensembles.qmd) | Separate rank, spectrum, and precision |
+| 07 | [Audit real features](07-realdata-audit.qmd) | Compare a matrix with the Gaussian budget |
+| 08 | [Choose m](08-choose-m.qmd) | Turn a fine-geometry requirement into a dimension |
+
+```bash
+jupyter lab notebooks/tutorials
+```
+
+Each notebook is CI-executed from a clean kernel, uses a fixed seed where
+needed, and ends with an interpretation rather than only a plot.

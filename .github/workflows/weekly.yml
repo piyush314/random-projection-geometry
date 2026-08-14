@@ -1,0 +1,35 @@
+name: weekly archival suite
+
+on:
+  schedule:
+    - cron: "17 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -e ".[dev]"
+      - name: Full theorem suite
+        env:
+          RPGEOM_FULL: "1"
+        run: python verification/run_all.py
+      - name: Full manuscript reproduction
+        run: python experiments/paper_tables/run.py --full --output artifacts/paper
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: weekly-archival-artifacts
+          path: |
+            verification/results.*
+            artifacts/paper/**
+          retention-days: 30

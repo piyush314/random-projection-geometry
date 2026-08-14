@@ -1,0 +1,37 @@
+---
+title: "FAQ"
+---
+
+## Does this contradict Johnson–Lindenstrauss?
+
+No. JL bounds each distance relative to itself. The paper studies smaller
+centered variations and joint decisions not separately controlled by that bound.
+
+## Is `sqrt(m/d)` the correlation achieved by my estimator?
+
+It is a decoder-free ceiling in the isotropic Gaussian model. A particular
+estimator can be worse. The centered projected norm attains it for the distance
+value in that model.
+
+## Can I apply the nearest-neighbor formula to millions of candidates?
+
+Not without additional analysis. The plurality law is a fixed-`q` limit. Use
+the real-data audit and a production-scale retrieval evaluation for growing `q`.
+
+## Why does `audit` disagree with the prediction?
+
+The prediction assumes isotropic Gaussian structure. Clusters, anisotropy,
+heavy tails, manifolds, duplicates, and low intrinsic dimension can all change
+the answer. The reported spectrum diagnostics help identify the first layer.
+
+## Why not just whiten everything?
+
+For a known noiseless map, row whitening removes reversible output distortion.
+It cannot recover discarded directions, and with additive noise small singular
+directions remain unstable.
+
+## Which artifact is authoritative?
+
+Source and experiments live here. The paper repository pins a submodule commit
+and retains generated publication PDFs/LaTeX. A reproduction manifest hashes
+every generated companion artifact.

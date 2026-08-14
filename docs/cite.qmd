@@ -1,0 +1,21 @@
+---
+title: "Citation and release"
+---
+
+If this project helps your work, cite the paper and archive release:
+
+```bibtex
+@article{sao2026exactlimits,
+  title  = {Exact Limits of Random Projections for Preserving Geometry:
+            Distance Recovery, Nearest-Neighbor Rankings, and Covariance
+            Shape in Gaussian Models},
+  author = {Sao, Piyush},
+  year   = {2026}
+}
+```
+
+Versioned public releases are designed for Zenodo archival. `CITATION.cff`
+provides machine-readable metadata; DOI fields will be updated at public launch.
+
+The code is MIT licensed. The manuscript and its text remain governed by the
+terms stated in the paper repository.

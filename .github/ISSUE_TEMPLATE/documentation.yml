@@ -1,0 +1,15 @@
+name: Documentation or tutorial correction
+description: Improve an explanation, notebook, site page, or API example
+title: "[docs] "
+labels: [documentation]
+body:
+  - type: input
+    attributes: {label: Page or notebook}
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: What is unclear or incorrect?
+    validations: {required: true}
+  - type: textarea
+    attributes:
+      label: Suggested improvement

@@ -1,0 +1,27 @@
+---
+title: "07 · Audit real feature matrices"
+description: "Use disagreement with the Gaussian baseline as a diagnostic."
+---
+
+```python
+import numpy as np
+from rpgeom import audit
+
+rng = np.random.default_rng(7)
+X = rng.standard_normal((1200, 128))
+report = audit(X, m=32, q=10, n_trials=1500, rng=rng)
+print(report)
+```
+
+The audit reports two spectral diagnostics before sampling a map:
+
+- `r2` describes the relative distance-fluctuation scale;
+- `alpha_m` is the optimal spectrum-aware distance-value share.
+
+Measured order survival can depart from the isotropic law because of clusters,
+low intrinsic dimension, tails, or anisotropy. The audit exposes that departure;
+it does not relabel it as failure.
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/07_real_feature_audit.ipynb)
+
+**Next:** [turn an accuracy requirement into a dimension](08-choose-m.qmd).

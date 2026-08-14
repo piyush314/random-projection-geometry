@@ -1,0 +1,47 @@
+---
+title: "Concept map"
+description: "The quantities answer different questions; this page keeps them separate."
+---
+
+## One projection, several geometries
+
+| Object | Question | Governing quantity | Isotropic value |
+|---|---|---|---:|
+| Distance value | How much centered distance variance is recoverable? | `alpha_m(Sigma)` | `m/d` |
+| Arbitrary distance feature | Can any nonlinear decoder do better? | squared HGR ceiling | `m/d` |
+| Pairwise order | Does candidate A remain closer than B? | Beta–arcsine law | exact finite `m,d` |
+| Full ranking | How many pairwise orders agree? | expected Kendall tau | `2 p_{m,d} - 1` |
+| Nearest of `q` | Does the argmin agree? | plurality kernel `p_q` | score-limit law |
+| Mean / scale | How much local Fisher information remains? | Haar average | `m/d` |
+| Diffuse covariance shape | How much scale-adjusted shape information remains? | Haar average | `(m-1)(m+2)/((d-1)(d+2))` |
+
+## Baseline versus fluctuation
+
+For two independent Gaussian observations,
+
+$$
+\mathbb E D=2\operatorname{tr}\Sigma,
+\qquad
+\operatorname{Var}(D)=8\operatorname{tr}(\Sigma^2).
+$$
+
+The mean is the large common baseline. Rankings use the much smaller centered
+fluctuations. Their relative scale is controlled by
+
+$$r_2(\Sigma)=\frac{(\operatorname{tr}\Sigma)^2}{\operatorname{tr}(\Sigma^2)}.$$
+
+## Decoder-free does not mean estimator performance
+
+HGR maximal correlation takes the best correlation over *all* square-integrable
+transformations on both sides. It is an impossibility ceiling: no decoder can
+beat it. A concrete estimator may perform strictly worse.
+
+## Known maps: rank, spread, precision
+
+A known noiseless map has three distinct summaries:
+
+- **Rank** governs optimal inference after reversible row whitening.
+- **Spectral spread** governs an unwhitened norm estimate `||Tx||²`.
+- **Small singular values** govern stability when additive noise is present.
+
+Conflating these summaries is the quickest route to a misleading claim.

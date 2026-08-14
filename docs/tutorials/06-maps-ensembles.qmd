@@ -1,0 +1,23 @@
+---
+title: "06 · General maps and ensembles"
+description: "Rank, spectral spread, and precision govern different tasks."
+---
+
+A projection is a partial isometry. A general map also distorts its retained
+row space. If the map is known and noiseless, whitening removes reversible
+distortion. If a pipeline uses `||Tx||²` directly, the spectrum matters. With
+noise, small singular values become unstable.
+
+```python
+from rpgeom.ensembles import averaging_corr, chain_corr, stacking_ceiling
+print(chain_corr([150, 100], d=300))
+print(averaging_corr(km=100, d=400))
+print(stacking_ceiling(km=100, d=400))
+```
+
+Stacking sketches can exploit their joint row space; averaging rescaled norms
+throws some of that information away. The formulas quantify the gap.
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/06_maps_ensembles.ipynb)
+
+**Next:** [run the theory against an actual matrix](07-realdata-audit.qmd).

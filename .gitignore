@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.ipynb_checkpoints/
+verification/results.json
+verification/results.md
+.venv/
+.pytest_cache/
+.ruff_cache/
+docs/_site/
+docs/.quarto/
+artifacts/
+*.ipynb_checkpoints/
+.DS_Store

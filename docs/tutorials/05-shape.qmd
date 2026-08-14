@@ -1,0 +1,24 @@
+---
+title: "05 · Covariance shape"
+description: "Why diffuse shape information pays a quadratic compression price."
+---
+
+Local Gaussian perturbations decompose into mean, overall log scale, and
+traceless covariance shape. Haar averaging retains `m/d` of mean and scale
+information, but only
+
+$$\frac{(m-1)(m+2)}{(d-1)(d+2)}\sim(m/d)^2$$
+
+of a diffuse, scale-adjusted shape direction.
+
+```python
+from rpgeom.ceilings import mean_ratio, shape_ratio
+print(mean_ratio(8, 40), shape_ratio(8, 40))
+```
+
+Finite-rank spikes are not diffuse. Their detectability also depends on sample
+size and spike strength; do not apply the quadratic rate to them without a model.
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/05_covariance_shape.ipynb)
+
+**Next:** [separate rank, metric distortion, and noisy inversion](06-maps-ensembles.qmd).

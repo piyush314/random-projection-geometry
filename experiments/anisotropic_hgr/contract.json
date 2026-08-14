@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "name": "anisotropic_hgr",
+  "inputs": {"lambda_ratio": "log grid from 1 to 10", "polynomial_degrees": [2, 3, 4]},
+  "outputs": ["anisotropic_hgr.csv", "anisotropic_hgr.meta.json"],
+  "determinism": "Exact Gaussian moments; no simulation.",
+  "success": "The lambda=2 degree-two value reproduces the symbolic counterexample."
+}

@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "Random Projection Geometry: exact laws, diagnostics, and reproducible experiments"
+version: 0.1.0
+date-released: 2026-08-14
+repository-code: "https://github.com/piyush314/random-projection-geometry"
+url: "https://piyush314.github.io/random-projection-geometry/"
+authors:
+  - family-names: Sao
+    given-names: Piyush
+license: MIT
+preferred-citation:
+  type: article
+  title: "Exact Limits of Random Projections for Preserving Geometry: Distance Recovery, Nearest-Neighbor Rankings, and Covariance Shape in Gaussian Models"
+  authors:
+    - family-names: Sao
+      given-names: Piyush
+  year: 2026

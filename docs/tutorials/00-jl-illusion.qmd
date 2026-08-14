@@ -1,0 +1,30 @@
+---
+title: "00 · The JL illusion"
+description: "Why relative-distance accuracy can coexist with lost rankings."
+---
+
+## The experiment
+
+Generate an isotropic Gaussian cloud, apply one normalized Haar projection,
+then compare two diagnostics on the **same map and sample**:
+
+1. the largest relative error over all sample distances;
+2. mean Kendall correlation of each query's candidate ranking.
+
+```python
+from rpgeom import budget
+print(budget(d=10_000, m=200, q=8))
+```
+
+The JL event concerns a large baseline of order `d`. Ranking concerns centered
+differences of order `sqrt(d)`. A fixed relative tolerance can cover the first
+while overwhelming the second.
+
+::: {.callout-tip}
+The surprise is not that JL fails. JL succeeds at exactly what it promises.
+The lesson is to name the downstream decision before choosing the certificate.
+:::
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/00_jl_illusion.ipynb)
+
+**Next:** [reduce one distance to a beta–gamma channel](01-beta-gamma.qmd).

@@ -1,0 +1,68 @@
+---
+title: "Random Projection Geometry"
+page-layout: full
+toc: false
+---
+
+::: {.hero}
+# Distances can survive while decisions disappear.
+
+Random projections come with a famous relative-error guarantee. This project
+measures the finer geometry that guarantee does not separately control:
+distance fluctuations, neighbor order, covariance shape, and noisy recovery.
+
+[Compute a budget](calculator.qmd){.btn .btn-primary} [Run the 10-minute tour](tutorials/00-jl-illusion.qmd){.btn .btn-outline-secondary}
+:::
+
+::: {.metric-grid}
+::: {.metric-card}
+<span class="status-pill">one distance</span>
+
+<div class="value">√(m/d)</div>
+
+Exact decoder-free HGR ceiling in the isotropic Gaussian model.
+:::
+::: {.metric-card}
+<span class="status-pill">rankings</span>
+
+<div class="value">≈ (2/π)√(m/d)</div>
+
+Expected Kendall correlation when the retained fraction is small.
+:::
+::: {.metric-card}
+<span class="status-pill">shape</span>
+
+<div class="value">≈ (m/d)²</div>
+
+Local information retained for diffuse traceless covariance changes.
+:::
+:::
+
+## Three ways to use this project
+
+1. **Make a dimension decision.** Use the browser [calculator](calculator.qmd)
+   or `rpgeom recommend` to translate a fine-geometry target into a sketch size.
+2. **Audit a feature matrix.** Run `rpgeom audit embeddings.npy --m 64` and
+   compare exact Gaussian predictions with measured survival on your data.
+3. **Inspect every claim.** Each theorem has an independent executable check,
+   and each experiment declares an input/output contract.
+
+::: {.callout-important}
+## The central distinction
+
+JL controls every distance **relative to itself**. Many decisions depend on
+differences between distances, which can be far smaller than the permitted JL
+error. There is no contradiction: the two guarantees answer different questions.
+:::
+
+```python
+from rpgeom import budget, recommend_dimension
+
+print(budget(d=768, m=64, q=10))
+print(recommend_dimension(d=768, kendall_tau=0.30))
+```
+
+The project is a companion to *Exact Limits of Random Projections for
+Preserving Geometry* by Piyush Sao. It combines a small tested Python library,
+guided notebooks, a theorem-by-theorem verification suite, and archival paper
+reproduction.

@@ -1,0 +1,28 @@
+---
+title: "08 · Choose a sketch dimension"
+description: "Start from the downstream decision, not a default JL epsilon."
+---
+
+```python
+from rpgeom import recommend_dimension
+
+print(recommend_dimension(d=768, kendall_tau=0.30))
+print(recommend_dimension(d=768, q=10, nearest_neighbor=0.35))
+print(recommend_dimension(d=768, shape_information=0.10))
+```
+
+The goals are deliberately separate. A dimension adequate for mean estimation
+may be inadequate for covariance shape. A dimension adequate for a pairwise
+comparison may be inadequate for nearest-of-many selection.
+
+Use the recommendation as a baseline:
+
+1. specify the decision and a target;
+2. compute the smallest Gaussian-model dimension;
+3. audit representative real data;
+4. validate the production retrieval/reranking pipeline.
+
+[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/08_choose_dimension.ipynb)
+
+You are now ready for the [experiment contracts](../reproduction.qmd) or the
+[API reference](../api/index.qmd).
