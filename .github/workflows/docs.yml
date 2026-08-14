@@ -25,7 +25,7 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
       - name: Render site
         run: quarto render docs
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@v6
         if: github.event.repository.visibility == 'public'
       - uses: actions/upload-pages-artifact@v5
         if: github.event.repository.visibility == 'public'
