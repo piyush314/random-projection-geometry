@@ -25,7 +25,7 @@ jobs:
         run: python verification/run_all.py
       - name: Full manuscript reproduction
         run: python experiments/paper_tables/run.py --full --output artifacts/paper
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: weekly-archival-artifacts
