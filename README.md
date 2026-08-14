@@ -11,7 +11,7 @@ geometry hidden below a Johnson–Lindenstrauss guarantee.**
 
 > Companion to *Exact Limits of Random Projections for Preserving Geometry:
 > Distance Recovery, Nearest-Neighbor Rankings, and Covariance Shape in
-> Gaussian Models* · Piyush Sao · paper link coming at public launch
+> Gaussian Models* · Piyush Sao · manuscript link forthcoming
 
 A random projection can preserve every sampled distance to fixed relative
 accuracy while losing the much smaller fluctuations that determine rankings,
@@ -141,6 +141,33 @@ rpgeom budget --d 400 --m 50 --q 8 --json
 rpgeom recommend --d 400 --shape-information .10 --json
 rpgeom audit matrix.csv --m 50 --trials 5000 --seed 42 --json
 ```
+
+## Project and support
+
+| Project field | Information |
+|---|---|
+| PI(s) / Facility Lead(s) | Piyush Sao, Oak Ridge National Laboratory |
+| Collaborating institutions | Oak Ridge National Laboratory (ORNL); Lawrence Berkeley National Laboratory (LBNL); Wake Forest University; University of Illinois Urbana-Champaign (UIUC); Texas A&M University (TAMU); Purdue University |
+| Program | Applied Mathematics |
+| Program Manager | David Rabson |
+| Support | [SPARSITUTE MMICC](https://sparsitute.lbl.gov/), U.S. Department of Energy, Office of Science |
+| Project website | [sparsitute.lbl.gov](https://sparsitute.lbl.gov/) |
+
+SPARSITUTE is a Mathematical Multifaceted Integrated Capability Center (MMICC)
+funded by the U.S. Department of Energy, Office of Science, Advanced Scientific
+Computing Research. This work is supported through its Applied Mathematics
+program.
+
+### DOE/ORNL notice
+
+This manuscript has been authored by UT-Battelle, LLC, under contract
+DE-AC05-00OR22725 with the U.S. Department of Energy (DOE). The U.S. Government
+retains and the publisher, by accepting the article for publication,
+acknowledges that the U.S. Government retains a nonexclusive, paid-up,
+irrevocable, worldwide license to publish or reproduce the published form of
+this manuscript, or allow others to do so, for U.S. Government purposes. DOE
+will provide public access to these results of federally sponsored research in
+accordance with the DOE Public Access Plan.
 
 ## Contributing and citation
 
