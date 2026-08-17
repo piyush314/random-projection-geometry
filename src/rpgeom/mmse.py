@@ -1,4 +1,4 @@
-"""Additive-noise recovery and the hard edge (Theorem 7.1(iii), SM1.1)."""
+"""Additive-noise recovery and the hard edge (Theorems 11.1(iii) and A.1)."""
 
 from __future__ import annotations
 

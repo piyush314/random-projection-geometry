@@ -23,6 +23,7 @@ def test_experiment_contracts_cover_all_families():
         "finite_m",
         "paper_tables",
         "realdata",
+        "zero_information_jl",
     }
     for path in contracts:
         contract = json.loads(path.read_text())

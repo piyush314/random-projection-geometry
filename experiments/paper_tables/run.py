@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import shutil
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -51,7 +52,30 @@ def main() -> int:
         newer.append("--full")
     _run(original)
     _run(newer)
-    _run([sys.executable, "scripts/generate_paper_assets.py", "--output", str(figures)])
+    _run(
+        [
+            sys.executable,
+            "scripts/generate_paper_assets.py",
+            "--output",
+            str(figures),
+            "--skip-zero-information",
+        ]
+    )
+    zero_information = output / "zero_information_jl"
+    _run(
+        [
+            sys.executable,
+            "experiments/zero_information_jl/run.py",
+            "--profile",
+            "full" if args.full else "smoke",
+            "--output",
+            str(zero_information),
+        ]
+    )
+    shutil.copy2(
+        zero_information / "paper_zero_information_jl.pdf",
+        figures / "fig_zero_information_jl.pdf",
+    )
 
     files = sorted(path for path in output.rglob("*") if path.is_file())
     manifest = {

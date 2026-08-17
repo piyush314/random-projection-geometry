@@ -1,6 +1,7 @@
-"""Theorem 7.1: rank / spectrum / precision trichotomy for general maps.
+"""Theorem 11.1: rank / spectrum / precision trichotomy for general maps.
 Kantorovich bounds on r_2(M) over random spectra; quarter-circle posterior
-loss q(eps) closed form vs quadrature; small-eps hard-edge fraction."""
+loss q(eps) closed form vs quadrature; small-eps hard-edge fraction.  The
+filename retains the number from the earlier manuscript layout."""
 
 import numpy as np
 
@@ -9,7 +10,7 @@ from rpgeom.ensembles import kantorovich_bounds
 from rpgeom.mmse import fraction_below_snr, quarter_circle_loss, quarter_circle_loss_quad
 
 
-@check("Thm 7.1", "general-map trichotomy: Kantorovich + hard edge")
+@check("Thm 11.1", "general-map trichotomy: Kantorovich + hard edge")
 def run():
     rng = np.random.default_rng(6)
     trials = 5000 if FULL else 1500

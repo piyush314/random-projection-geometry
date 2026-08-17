@@ -1,6 +1,7 @@
-"""Theorem 6.1: covariance *shape* information contracts by exactly
+"""Theorem 10.1: covariance *shape* information contracts by exactly
 (m-1)(m+2)/((d-1)(d+2)).  The Haar moment identity is re-derived from the
-two-parameter symmetry ansatz and confirmed by batched Monte Carlo."""
+two-parameter symmetry ansatz and confirmed by batched Monte Carlo.  The
+filename retains the number from the earlier manuscript layout."""
 
 import numpy as np
 
@@ -8,7 +9,7 @@ from harness import FULL, check
 from rpgeom.ceilings import shape_ratio
 
 
-@check("Thm 6.1", "Haar shape-contraction identity: ansatz + MC")
+@check("Thm 10.1", "Haar shape-contraction identity: ansatz + MC")
 def run():
     d, m = 10, 4
     # analytic: solve E[Pi_ij Pi_kl] = c1 * sym + c2 * delta terms

@@ -1,6 +1,7 @@
-"""Theorem 3.2: Var(E[D|O]) <= 8 sum_{j<=m} lambda_j^2 for every rank-m map,
+"""Theorem 8.3: Var(E[D|O]) <= 8 sum_{j<=m} lambda_j^2 for every rank-m map,
 with equality at the top-m eigenspace.  Adversarial random sweep using the
-exact Gaussian conditional-variance formula."""
+exact Gaussian conditional-variance formula.  The filename retains the
+number from the earlier manuscript layout."""
 
 import numpy as np
 
@@ -15,7 +16,7 @@ def _var_cond(S, R):
     return 2 * np.trace(X @ X)
 
 
-@check("Thm 3.2", "spectral ceiling for the distance value, adversarial sweep")
+@check("Thm 8.3", "spectral ceiling for the distance value, adversarial sweep")
 def run():
     rng = np.random.default_rng(0)
     d, m = 8, 3

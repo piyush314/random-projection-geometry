@@ -1,16 +1,17 @@
-"""Exact ranking laws under random projection (Theorems 5.1-5.4, SM3.1).
+"""Exact ranking laws under random projection (Theorems 9.1-9.2,
+Proposition 9.3, and Appendix Theorem C.1).
 
 All formulas are for isotropic Gaussian point clouds in R^d sketched by a
 rank-m projection (Haar frame or orthonormalized Gaussian map).  The three
 central objects:
 
 * ``pairwise_agreement(m, d)`` -- probability that one pairwise distance
-  comparison survives projection (Beta-arcsine law, Theorem 5.1).
+  comparison survives projection (Beta-arcsine law, Theorem 9.1).
 * ``plurality_kernel(rho, q)`` -- probability that the nearest of q
   candidates is preserved, in the Gaussian-score limit with correlation
-  rho = sqrt(m/d) (Theorem 5.3).
+  rho = sqrt(m/d) (Theorem 9.2).
 * ``coupling_delta(q, m, d)`` -- the explicit nonasymptotic bound of
-  Theorem SM3.1 controlling distance from chance level.
+  Appendix Theorem C.1 controlling distance from chance level.
 """
 
 from __future__ import annotations
@@ -31,7 +32,7 @@ __all__ = [
 
 
 def a_q(q: int) -> float:
-    """a_q = int phi(x)^2 Phi(x)^{q-2} dx  (Proposition 5.4)."""
+    """a_q = int phi(x)^2 Phi(x)^{q-2} dx  (Proposition 9.3)."""
     if q < 2:
         raise ValueError("q must be >= 2")
     val, _ = integrate.quad(
@@ -66,7 +67,7 @@ def _arcsin_beta_expectation(m: float, d: float) -> float:
 
 
 def pairwise_agreement(m: int, d: int) -> float:
-    """P(one distance comparison survives projection), Theorem 5.1.
+    """P(one distance comparison survives projection), Theorem 9.1.
 
     p_{m,d} = 1/2 + (1/pi) E[arcsin sqrt(B)],  B ~ Beta(m/2, (d-m)/2).
 
@@ -91,7 +92,8 @@ def plurality_kernel(rho: float, q: int, nodes: int = 60) -> float:
 
     Computes q * E[ S(X,Y)^{q-1} ] over a standard bivariate normal pair
     with correlation rho, where S is the joint survival function
-    (equation (5.1) of the paper). Tensor Gauss--Hermite quadrature gives
+    (the defining integral in Section 9.3 of the paper). Tensor
+    Gauss--Hermite quadrature gives
     roughly machine precision for q=2 and the paper's tabulated cases.
 
     Limits: p_q(0) = 1/q (chance), p_q(1) = 1.
@@ -136,7 +138,7 @@ def plurality_kernel_mc(
 
 
 def coupling_delta(q: int, m: int, d: int) -> float:
-    """Explicit nonasymptotic bound Delta_{q,m,r} of Theorem SM3.1.
+    """Explicit nonasymptotic bound Delta_{q,m,r} of Appendix Theorem C.1.
 
     Bounds |P(N_1 = tilde-N_1) - 1/q| and the TV distance of the joint
     neighborhood pair from independent uniform subsets.  Deliberately

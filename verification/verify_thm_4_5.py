@@ -1,14 +1,15 @@
-"""Theorem 4.5 (balanced spectral thinning): with equal per-block retention
+"""Theorem 8.5 (balanced spectral thinning): with equal per-block retention
 theta, the full nonlinear ceiling is exactly sqrt(theta), attained by the
 linear witness.  Exact-moment degree-2 CCA on the paper's two-block example
-(lambda = 2,1; ranks 4,8; retained 1,2; theta = 1/4)."""
+(lambda = 2,1; ranks 4,8; retained 1,2; theta = 1/4).  The filename retains
+the number from the earlier manuscript layout."""
 
 import sympy as sp
 
 from harness import check
 
 
-@check("Thm 4.5", "balanced thinning gives exactly sqrt(theta), exact moments")
+@check("Thm 8.5", "balanced thinning gives exactly sqrt(theta), exact moments")
 def run():
     u1, v1, u2, v2 = sp.symbols("u1 v1 u2 v2", positive=True)
     dof = {u1: 1, v1: 3, u2: 2, v2: 6}

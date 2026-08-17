@@ -20,11 +20,47 @@ The JL event concerns a large baseline of order `d`. Ranking concerns centered
 differences of order `sqrt(d)`. A fixed relative tolerance can cover the first
 while overwhelming the second.
 
+## The zero-information control
+
+The separation can be absolute. Generate a second low-dimensional Gaussian
+cloud independently of the data and scale it to the same population distance
+baseline. At JL-scale dimensions, concentration alone can make all labeled
+pairwise inequalities hold even though the replacement distances, rankings,
+and neighbors are independent of their originals.
+
+![The repository dashboard compares the all-pairs certificate, distance signal,
+rankings, nearest neighbors, and two distortion diagnostics. The manuscript
+uses only the certificate and distance-signal panels.](../assets/zero_information_jl_dashboard.png){fig-alt="Six-panel zero-information JL experiment dashboard"}
+
+Reproduce the complete dashboard with:
+
+```bash
+python experiments/zero_information_jl/run.py \
+  --profile full --output artifacts/zero_information_jl
+```
+
+The fixed-coordinate Haar implementation is exact for the joint law of the
+original and projected distance matrices under isotropy. The shared-pair panel
+estimates correlation across repeated independent triples; it does not center
+all pairs within one realized cloud.
+
+The generated data also check two points that do not need extra panels. First,
+rescaling the replacement to the realized mean distance matches that baseline
+to floating-point accuracy without changing any ranking. Second, the observed
+failure frequency for disjoint-pair distance ratios agrees with the exact
+two-sided $F_{m,d}$ probability. The latter is the finite-sample diagnostic
+behind the manuscript's $\Omega(\varepsilon^{-2}\log(n/\delta))$ necessity
+argument for independent Gaussian replacement.
+
 ::: {.callout-tip}
 The surprise is not that JL fails. JL succeeds at exactly what it promises.
-The lesson is to name the downstream decision before choosing the certificate.
+The lesson is that satisfying its sampled inequalities does not by itself
+force the output to retain sample-specific geometry. Name the downstream
+decision before choosing the certificate.
 :::
 
-[Open the executable notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/00_jl_illusion.ipynb)
+[Open the executable budget notebook](https://github.com/piyush314/random-projection-geometry/blob/main/notebooks/tutorials/00_jl_illusion.ipynb).
+The independent-replacement experiment is reproduced by the command above
+rather than by this short notebook.
 
 **Next:** [reduce one distance to a beta–gamma channel](01-beta-gamma.qmd).

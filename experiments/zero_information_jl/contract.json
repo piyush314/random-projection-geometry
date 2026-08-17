@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "name": "zero_information_jl",
+  "inputs": {
+    "seed": 42,
+    "epsilon": 0.2,
+    "profiles": ["smoke", "full"],
+    "full_shape": {"d": 8192, "n": 100}
+  },
+  "outputs": [
+    "paper_zero_information_jl.pdf",
+    "paper_zero_information_jl.png",
+    "dashboard_zero_information_jl.pdf",
+    "dashboard_zero_information_jl.png",
+    "certificate_trials.csv",
+    "ranking_trials.csv",
+    "sharpness.csv",
+    "scatter_case.npz",
+    "summary.json"
+  ],
+  "determinism": "All stochastic outputs use an explicit NumPy seed; theory curves use deterministic quadrature except for the seeded Gaussian-score nearest-neighbor curve.",
+  "success": "The replacement distance correlation and mean Kendall correlation remain near zero while its all-pairs maximum distortion crosses the same epsilon threshold as the projection at JL-scale dimensions; empirical calibration matches the realized baseline and disjoint-pair failures agree with exact F tails."
+}

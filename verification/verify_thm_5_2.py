@@ -1,9 +1,10 @@
-"""Theorem 5.2 (JL and ranking collapse coexist): a sampled map satisfies a
+"""Theorem 9.4 (JL and ranking collapse coexist): a sampled map satisfies a
 JL guarantee on all pairs while mean Kendall tau is near zero.  Direct
 demonstration at log n << m << d, averaged over independent replicas so the
 collapse *level* can be compared against the exact law (a single replica
 only concentrates at the Hoeffding rate exp(-n t^2 / 6), which is vacuous
-at these n)."""
+at these n).  The filename retains the number from the earlier manuscript
+layout."""
 
 import numpy as np
 from scipy import stats as st
@@ -13,7 +14,7 @@ from harness import FULL, check
 from rpgeom.laws import kendall_tau
 
 
-@check("Thm 5.2", "one map: JL holds on all pairs AND rankings collapse")
+@check("Thm 9.4", "one map: JL holds on all pairs AND rankings collapse")
 def run():
     rng = np.random.default_rng(3)
     if FULL:

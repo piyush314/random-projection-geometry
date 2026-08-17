@@ -3,21 +3,26 @@ title: "Theorem index"
 description: "From each mathematical claim to its API, notebook, and executable check."
 ---
 
-| Result | Meaning | API | Independent check |
+Result numbers below follow the restructured, self-contained arXiv manuscript.
+Verification filenames retain the numbers from the earlier manuscript layout so
+that existing links and automation remain stable.
+
+| Current result | Meaning | API | Independent check (legacy filename) |
 |---|---|---|---|
-| Theorem 3.2 | Optimal spectrum-aware distance-value share | `ceilings.alpha_m` | `verify_thm_3_2.py` |
-| Theorems 4.1–4.2 | Isotropic HGR ceiling and Laguerre spectrum | `hgr_isotropic`, `laguerre_singvals` | `verify_thm_4_1_4_2.py` |
-| Theorem 4.3 | Exact mutual information | `ceilings.mutual_info` | `verify_thm_4_3.py` |
-| Theorem 4.4 | Anisotropic nonlinear excess | polynomial CCA tools | `verify_thm_4_4.py` |
-| Theorem 4.5 | Balanced block retention | `ceilings.alpha_pi` | `verify_thm_4_5.py` |
-| Theorem 5.1 | Beta–arcsine order law | `laws.pairwise_agreement` | `verify_thm_5_1.py` |
-| Theorem 5.2 | JL and ranking-collapse coexistence | experiment | `verify_thm_5_2.py` |
-| Theorems 5.3–5.4 | Plurality kernel and small-correlation slope | `plurality_kernel`, `slope_cq` | `verify_thm_5_3_5_4.py` |
-| Theorem 6.1 | Mean/scale/shape contraction | `mean_ratio`, `shape_ratio` | `verify_thm_6_1.py` |
-| Theorem 7.1 | Rank–spectrum–precision trichotomy | `ensembles`, `mmse` | `verify_thm_7_1.py` |
-| Theorem 7.2 | Stacking ceiling and averaging decoder | `stacking_ceiling`, `averaging_corr` | `verify_thm_7_2.py` |
-| Theorem SM1.1 | Gaussian-chain identity | `chain_corr` | `verify_sm1_1.py` |
-| Theorem SM3.1 | Explicit neighborhood coupling bound | `coupling_delta` | `verify_sm3_1.py` |
+| Proposition 3.1 | Independent Gaussian replacement satisfies all-pairs JL | experiment | `verify_prop_5_5.py` |
+| Theorems 7.1 and 8.1 | Isotropic HGR ceiling and Laguerre spectrum | `hgr_isotropic`, `laguerre_singvals` | `verify_thm_4_1_4_2.py` |
+| Theorem 8.2 | Exact mutual information | `ceilings.mutual_info` | `verify_thm_4_3.py` |
+| Theorem 8.3 | Optimal spectrum-aware distance-value share | `ceilings.alpha_m` | `verify_thm_3_2.py` |
+| Theorem 8.4 | Anisotropic nonlinear excess | polynomial CCA tools | `verify_thm_4_4.py` |
+| Theorem 8.5 | Balanced block retention | `ceilings.alpha_pi` | `verify_thm_4_5.py` |
+| Theorem 9.1 | Beta–arcsine order law | `laws.pairwise_agreement` | `verify_thm_5_1.py` |
+| Theorem 9.2 and Proposition 9.3 | Plurality kernel and small-correlation slope | `plurality_kernel`, `slope_cq` | `verify_thm_5_3_5_4.py` |
+| Theorem 9.4 | JL and ranking-collapse coexistence | experiment | `verify_thm_5_2.py` |
+| Theorem 10.1 | Mean/scale/shape contraction | `mean_ratio`, `shape_ratio` | `verify_thm_6_1.py` |
+| Theorem 11.1 | Rank–spectrum–precision trichotomy | `ensembles`, `mmse` | `verify_thm_7_1.py` |
+| Theorem 12.1 | Stacking ceiling and averaging decoder | `stacking_ceiling`, `averaging_corr` | `verify_thm_7_2.py` |
+| Theorem A.1 (SM1.1 in the standalone supplement) | Gaussian-chain identity | `chain_corr` | `verify_sm1_1.py` |
+| Theorem C.1 (SM3.1 in the standalone supplement) | Explicit neighborhood coupling bound | `coupling_delta` | `verify_sm3_1.py` |
 
 The check scripts import only low-level numerical dependencies where practical.
 They intentionally duplicate a small amount of logic to avoid circular

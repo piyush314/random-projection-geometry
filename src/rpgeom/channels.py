@@ -1,10 +1,10 @@
 """The beta-gamma channel and exact-moment polynomial CCA.
 
-The isotropic sketch reduces (Theorem 4.1) to observing U ~ chi^2_r out of
+The scalar channel underlying Theorem 7.1 observes U ~ chi^2_r out of
 T = U + V with independent V ~ chi^2_{d-r}.  ``poly_cca_maxcorr`` computes
 the maximal correlation restricted to polynomial features of a given degree
 using *exact* chi-square moments -- no sampling, no noise.  This is the
-engine behind the Theorem 4.4 counterexample and the Theorem 4.5 identity.
+engine behind the Theorem 8.4 counterexample and the Theorem 8.5 identity.
 """
 
 from __future__ import annotations
@@ -44,7 +44,7 @@ def poly_cca_maxcorr_UT(r: int, d: int, degree: int = 4) -> float:
     computed from exact moments.
 
     For the beta-gamma channel the maximal correlation over *all* features
-    is sqrt(r/d), attained already by linear features (Theorem 4.1 +
+    is sqrt(r/d), attained already by linear features (Theorem 7.1 +
     Griffiths' Laguerre system): this function returns sqrt(r/d) to machine
     precision at every degree, which is itself a nontrivial check.
     """

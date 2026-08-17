@@ -1,6 +1,7 @@
-"""Theorem SM1.1: exact Gaussian-chain identity
+"""Appendix Theorem A.1: exact Gaussian-chain identity
 Corr^2 = (2/d)/(prod_{l>=0}(1+2/n_l) - 1) at every finite size, checked by
-the chi-square stage representation and against the paper's Table 3 chains."""
+the chi-square stage representation and against the paper's Table 3 chains.
+The filename retains the standalone-supplement number SM1.1."""
 
 import numpy as np
 
@@ -8,7 +9,7 @@ from harness import FULL, check
 from rpgeom.ensembles import chain_corr
 
 
-@check("Thm SM1.1", "Gaussian-chain identity: closed form + stage-factor MC")
+@check("Thm A.1", "Gaussian-chain identity: closed form + stage-factor MC")
 def run():
     rng = np.random.default_rng(8)
     out = []

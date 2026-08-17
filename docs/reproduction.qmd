@@ -20,15 +20,28 @@ rpgeom reproduce-paper --output artifacts/paper
 rpgeom reproduce-paper --full --output artifacts/paper
 ```
 
-The archival command writes CSV files, LaTeX table rows, five PDF figures, and
-a SHA-256 manifest. Smoke scale is the default; `--full` uses manuscript sample
-sizes.
+The archival command writes CSV files, LaTeX table rows, the five current
+manuscript plots, the legacy Laguerre plot, and a SHA-256 manifest. The channel
+diagram is built separately from its DOT source in the manuscript repository.
+Smoke scale is the default; `--full` uses manuscript sample sizes.
 
-## Four experiment families
+For a plot-only regeneration, the existing asset command now writes all five
+current manuscript plots, including the zero-information control:
+
+```bash
+python scripts/generate_paper_assets.py --output artifacts/paper/figures
+```
+
+It also retains `fig_laguerre.pdf` as a legacy compatibility output. The
+zero-information panel uses the full manuscript profile by default. Add
+`--zero-information-profile smoke` for a faster layout or CI check.
+
+## Five experiment families
 
 - **Paper tables:** the archival manuscript bundle.
 - **Finite m:** exact laws versus small-ratio approximations.
 - **Anisotropic HGR:** exact-moment polynomial canonical correlations.
+- **Zero-information JL:** Haar, Gaussian-map, and independent-replacement controls.
 - **Real data:** a seeded audit of a supplied feature matrix.
 
 Every family has a `contract.json` declaring inputs, outputs, determinism, and

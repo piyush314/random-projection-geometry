@@ -1,7 +1,8 @@
-"""Theorem 4.3: I(D; O) = h(chi2_d) - h(chi2_{d-r}), with limits
+"""Theorem 8.2: I(D; O) = h(chi2_d) - h(chi2_{d-r}), with limits
 -(1/2)log(1-alpha) (proportional) and r/(2d) (fixed r).  The closed form is
 cross-checked by an independent Monte Carlo estimator that uses only exact
-chi-square densities."""
+chi-square densities.  The filename retains the number from the earlier
+manuscript layout."""
 
 import numpy as np
 from scipy import stats
@@ -10,7 +11,7 @@ from harness import FULL, check
 from rpgeom.ceilings import mutual_info
 
 
-@check("Thm 4.3", "exact mutual information and both limits")
+@check("Thm 8.2", "exact mutual information and both limits")
 def run():
     rng = np.random.default_rng(1)
     out = []

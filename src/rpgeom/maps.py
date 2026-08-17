@@ -15,7 +15,7 @@ def haar_frame(d: int, m: int, rng: np.random.Generator | None = None) -> np.nda
 
 
 def gaussian_stage(n_out: int, n_in: int, rng: np.random.Generator | None = None) -> np.ndarray:
-    """n_out x n_in iid Gaussian stage with entries N(0, 1/n_out) (SM1.1 convention)."""
+    """n_out x n_in iid Gaussian stage with entries N(0, 1/n_out) (Theorem A.1 convention)."""
     rng = np.random.default_rng() if rng is None else rng
     return rng.standard_normal((n_out, n_in)) / np.sqrt(n_out)
 
@@ -36,7 +36,7 @@ def polar_split(G: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
 
     G = W^{1/2} R with W = G G^T and R = W^{-1/2} G having orthonormal rows.
     The Haar factor carries the rank bottleneck; the Wishart factor adds the
-    multiplicative norm noise (proof of Theorem SM1.1 / SM2.10).
+    multiplicative norm noise (proof of Appendix Theorem A.1).
     """
     W = G @ G.T
     vals, vecs = np.linalg.eigh(W)

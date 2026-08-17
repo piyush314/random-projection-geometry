@@ -1,7 +1,20 @@
-"""Generate the manuscript's five figures from deterministic seeds."""
+"""Generate five manuscript plot assets and one legacy plot.
+
+The zero-information figure is produced by its canonical experiment and copied
+beside the four other plot assets used by the manuscript.  The historical
+Laguerre plot is retained as a sixth PDF for backwards compatibility.  The
+channel diagram is built separately from its DOT source in the manuscript
+repository.
+Existing ``--output`` invocations remain valid.  The paper-bundle driver uses
+``--skip-zero-information`` because it runs the full experiment separately and
+archives all of its diagnostics.
+"""
 
 import argparse
+import shutil
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -16,6 +29,17 @@ from rpgeom.plotting import COLORS, setup_style
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "paper" / "figures")
+parser.add_argument(
+    "--zero-information-profile",
+    choices=("smoke", "full"),
+    default="full",
+    help="sample-size profile used for the zero-information manuscript figure",
+)
+parser.add_argument(
+    "--skip-zero-information",
+    action="store_true",
+    help=argparse.SUPPRESS,
+)
 args = parser.parse_args()
 
 setup_style()
@@ -27,7 +51,7 @@ def polish(ax):
     ax.grid(axis='y', alpha=0.5); ax.grid(axis='x', visible=False)
 
 
-# Figures 2--5 appear two to a row in the manuscript. Generate them at their
+# Four plots appear two to a row in the manuscript. Generate them at their
 # final panel width so LaTeX does not shrink text designed for a wide figure.
 # With the manuscript geometry these settings yield effective label, tick,
 # and legend sizes of approximately 10, 9, and 9 pt.
@@ -50,7 +74,7 @@ def polish_compact(fig, ax):
             label.set_fontsize(COMPACT_LEGEND_SIZE)
     fig.tight_layout(pad=0.35)
 
-# ---------------- Figure 1: order-preservation probability -------------------
+# ---------------- Pairwise order-preservation plot ---------------------------
 d = 200
 ms = np.arange(2, 121, 2)
 p_exact, p_mc = [], []
@@ -77,7 +101,7 @@ ax.legend(frameon=False, loc='lower right')
 polish_compact(fig, ax)
 fig.savefig(OUT / 'fig_order.pdf', bbox_inches='tight')
 
-# ---------------- Figure 2: Laguerre spectrum ------------------------------
+# ---------------- Legacy Laguerre spectrum plot ------------------------------
 fig, ax = plt.subplots(figsize=(5.2, 3.4))
 ratios = np.linspace(0.005, 0.5, 200)
 d = 400
@@ -101,7 +125,7 @@ ax.legend(frameon=False, fontsize=8, loc='lower right')
 polish(ax)
 fig.savefig(OUT / 'fig_laguerre.pdf', bbox_inches='tight')
 
-# ---------------- Figure 3: harmonic law for iid transforms ------------------
+# ---------------- Map-correlation plot ---------------------------------------
 d = 200
 ms = np.arange(10, 801, 10)
 fig, ax = plt.subplots(figsize=COMPACT_FIGSIZE)
@@ -123,7 +147,7 @@ ax.legend(frameon=False, loc='lower right')
 polish_compact(fig, ax)
 fig.savefig(OUT / 'fig_harmonic.pdf', bbox_inches='tight')
 
-# ---------------- Figure 4: information-geometry contraction -----------------
+# ---------------- Information-geometry plot ----------------------------------
 d = 60
 ms = np.arange(2, 59, 2)
 fig, ax = plt.subplots(figsize=COMPACT_FIGSIZE)
@@ -150,7 +174,7 @@ ax.legend(frameon=False, loc='upper left')
 polish_compact(fig, ax)
 fig.savefig(OUT / 'fig_infogeo.pdf', bbox_inches='tight')
 
-# ---------------- Figure 5: anisotropic polynomial CCA -----------------------
+# ---------------- Anisotropic polynomial-CCA plot ----------------------------
 rows = anisotropy_sweep()
 lam = np.array([row['lambda_ratio'] for row in rows])
 fig, ax = plt.subplots(figsize=COMPACT_FIGSIZE)
@@ -172,4 +196,28 @@ ax.set_title('Anisotropic bounds')
 ax.legend(frameon=False, loc='lower right')
 polish_compact(fig, ax)
 fig.savefig(OUT / 'fig_anisotropy.pdf', bbox_inches='tight')
-print(f'wrote five figures to {OUT}')
+
+if not args.skip_zero_information:
+    with tempfile.TemporaryDirectory(prefix="rpgeom-zero-information-") as tmp:
+        zero_output = Path(tmp)
+        subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "experiments" / "zero_information_jl" / "run.py"),
+                "--profile",
+                args.zero_information_profile,
+                "--output",
+                str(zero_output),
+            ],
+            cwd=ROOT,
+            check=True,
+        )
+        shutil.copy2(
+            zero_output / "paper_zero_information_jl.pdf",
+            OUT / "fig_zero_information_jl.pdf",
+        )
+
+if args.skip_zero_information:
+    print(f'wrote four manuscript plots plus one legacy plot to {OUT}')
+else:
+    print(f'wrote five manuscript plots plus one legacy plot to {OUT}')

@@ -109,7 +109,7 @@ schemas/                    machine-readable report contracts
 verification/               one independent check per theorem
 reproduction/paper/         manuscript table and data generators
 scripts/                    deterministic paper-asset generation
-experiments/                four contract-driven experiment families
+experiments/                five contract-driven experiment families
 notebooks/tutorials/        nine executable lessons
 notebooks/reproduction/     provenance walkthroughs
 docs/                       Quarto site and browser calculator
@@ -127,9 +127,22 @@ Run the archival bundle:
 python experiments/paper_tables/run.py --full --output artifacts/paper
 ```
 
-It writes machine-readable data, LaTeX rows, five PDFs, and a SHA-256 artifact
-manifest. Exact identities, deterministic-equivalent proxies, asymptotic laws,
-and Monte Carlo estimates are never presented as the same kind of evidence.
+It writes machine-readable data, LaTeX rows, the five current manuscript plots,
+the legacy Laguerre plot, and a SHA-256 artifact manifest. The channel diagram
+is built separately from its DOT source in the manuscript repository. Exact
+identities, deterministic-equivalent proxies, asymptotic laws, and Monte Carlo
+estimates are never presented as the same kind of evidence.
+
+To regenerate the five manuscript plots, including the independent-replacement
+control, use the backwards-compatible asset command:
+
+```bash
+python scripts/generate_paper_assets.py --output artifacts/paper/figures
+```
+
+The command also retains `fig_laguerre.pdf` as a legacy output. Its
+zero-information panel uses the full manuscript profile by default; pass
+`--zero-information-profile smoke` for a faster check.
 
 ## CLI and JSON
 

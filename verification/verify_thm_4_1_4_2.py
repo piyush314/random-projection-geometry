@@ -1,7 +1,8 @@
-"""Theorems 4.1-4.2: the HGR ceiling sqrt(r/d) of the beta-gamma channel and
+"""Theorems 7.1 and 8.1: the HGR ceiling sqrt(r/d) of the beta-gamma channel and
 the Laguerre singular spectrum.  Two exact-moment checks (no sampling):
 polynomial CCA up to degree 4 equals sqrt(r/d), and the spectral variance
-decomposition reproduces Var(E[T^2|U]) exactly."""
+decomposition reproduces Var(E[T^2|U]) exactly.  The filename retains the
+numbers from the earlier manuscript layout."""
 
 import numpy as np
 
@@ -10,7 +11,7 @@ from rpgeom.ceilings import laguerre_singvals
 from rpgeom.channels import chi2_moment, poly_cca_maxcorr_UT
 
 
-@check("Thm 4.1/4.2", "HGR ceiling and Laguerre spectrum, exact moments")
+@check("Thm 7.1/8.1", "HGR ceiling and Laguerre spectrum, exact moments")
 def run():
     r, d = 3, 7
     out = []

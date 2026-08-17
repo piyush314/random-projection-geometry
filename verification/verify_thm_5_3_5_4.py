@@ -1,7 +1,8 @@
-"""Theorem 5.3 + Proposition 5.4: the fixed-q nearest-neighbor limit is the
+"""Theorem 9.2 + Proposition 9.3: the fixed-q nearest-neighbor limit is the
 Gaussian plurality-stability kernel p_q(sqrt(m/d)); small-rho slope c_q =
 q^2 (q-1) a_q^2.  Quadrature vs paper value, kernel MC, finite-dim MC, and
-numerical-slope checks including c_2 = 1/pi exactly."""
+numerical-slope checks including c_2 = 1/pi exactly.  The filename retains
+the numbers from the earlier manuscript layout."""
 
 import numpy as np
 
@@ -9,7 +10,7 @@ from harness import FULL, check
 from rpgeom.laws import plurality_kernel, plurality_kernel_mc, slope_cq
 
 
-@check("Thm 5.3/5.4", "NN plurality kernel + slope constants")
+@check("Thm 9.2/Prop 9.3", "NN plurality kernel + slope constants")
 def run():
     rng = np.random.default_rng(4)
     out = []

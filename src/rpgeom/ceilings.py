@@ -1,4 +1,4 @@
-"""Decoder-free information budgets (Theorems 3.2, 4.1-4.3, 4.5, 6.1).
+"""Decoder-free information budgets (Theorems 7.1, 8.1-8.3, 8.5, 10.1).
 
 These are ceilings over *all* square-integrable decoders (Hirschfeld-
 Gebelein-Renyi maximal correlation and Fisher-information ratios), not
@@ -28,7 +28,7 @@ __all__ = [
 def hgr_isotropic(m: int, d: int) -> float:
     """Maximal correlation of any feature of D with the sketch: sqrt(m/d).
 
-    Theorem 4.1 (via Dembo-Kagan-Shepp).  Applies to every f(D) in L^2,
+    Theorem 7.1 (via Dembo-Kagan-Shepp).  Applies to every f(D) in L^2,
     hence to every nonlinear decoder.
     """
     _validate_dimensions(m, d)
@@ -38,7 +38,7 @@ def hgr_isotropic(m: int, d: int) -> float:
 def alpha_m(spectrum: np.ndarray, m: int) -> float:
     """alpha_m(Sigma) = sum of top-m lambda_j^2 / sum of all lambda_j^2.
 
-    Theorem 3.2: Corr(D, g(O))^2 <= alpha_m for every rank-m linear map
+    Theorem 8.3: Corr(D, g(O))^2 <= alpha_m for every rank-m linear map
     and every decoder g of the distance *value*; tight for the top-m
     eigenspace projection.
     """
@@ -53,7 +53,7 @@ def alpha_pi(lam: np.ndarray, r: np.ndarray, s: np.ndarray) -> float:
     """alpha_Pi(Sigma) for a commuting block projection.
 
     Blocks g have eigenvalue lam[g] with multiplicity r[g], of which s[g]
-    directions are retained.  Theorem 4.5: if every s[g]/r[g] equals a
+    directions are retained.  Theorem 8.5: if every s[g]/r[g] equals a
     common theta, the full nonlinear ceiling is exactly sqrt(theta) and
     the linear witness attains it.
     """
@@ -63,7 +63,7 @@ def alpha_pi(lam: np.ndarray, r: np.ndarray, s: np.ndarray) -> float:
 
 def laguerre_singvals(r: int, d: int, kmax: int = 10) -> np.ndarray:
     """Singular values ell_k of the beta-gamma conditional-expectation
-    operator: ell_k = sqrt( (r/2)_k / (d/2)_k )  (Theorem 4.2, Griffiths).
+    operator: ell_k = sqrt( (r/2)_k / (d/2)_k )  (Theorem 8.1, Griffiths).
 
     ell_1 = sqrt(r/d) is the HGR ceiling; higher modes decay geometrically
     with ratio approaching r/d.
@@ -85,7 +85,7 @@ def chi2_entropy(k: float) -> float:
 
 
 def mutual_info(r: int, d: int) -> float:
-    """Exact I(D; O) = h(chi^2_d) - h(chi^2_{d-r}) in nats (Theorem 4.3).
+    """Exact I(D; O) = h(chi^2_d) - h(chi^2_{d-r}) in nats (Theorem 8.2).
 
     Limits: -(1/2) log(1 - r/d) for proportional r, and r/(2d) for fixed r
     as d grows.
@@ -109,7 +109,7 @@ def scale_ratio(m: int, d: int) -> float:
 def shape_ratio(m: int, d: int) -> float:
     """Fraction of traceless covariance-*shape* information retained.
 
-    Theorem 6.1: exactly (m-1)(m+2) / ((d-1)(d+2)) ~ (m/d)^2 -- shape pays
+    Theorem 10.1: exactly (m-1)(m+2) / ((d-1)(d+2)) ~ (m/d)^2 -- shape pays
     a quadratic price where mean and scale pay a linear one.
     """
     _validate_dimensions(m, d)

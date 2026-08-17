@@ -1,4 +1,4 @@
-"""General maps, chains, and ensembles (Theorems 7.1, 7.2, SM1.1)."""
+"""General maps, chains, and ensembles (Theorems 11.1, 12.1, and A.1)."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ __all__ = [
 def chain_corr(widths: list[int], d: int) -> float:
     """Corr(||Z||^2, ||P_L Z||^2) for a Gaussian chain, exact at every size.
 
-    Theorem SM1.1: Corr^2 = (2/d) / (prod_{l=0..L} (1 + 2/n_l) - 1) with
+    Appendix Theorem A.1: Corr^2 = (2/d) / (prod_{l=0..L} (1 + 2/n_l) - 1) with
     n_0 = d.  One stage of width m gives sqrt(m/(m+d+2)).
     """
     prod = np.prod([1.0 + 2.0 / n for n in [d] + list(widths)])
@@ -27,7 +27,7 @@ def chain_corr(widths: list[int], d: int) -> float:
 def averaging_corr(km: int, d: int) -> float:
     """Correlation of the averaged per-sketch estimate over k rank-m sketches.
 
-    Theorem 7.2(ii): sqrt(km / (km + d + 2)), jointly over maps and data.
+    Theorem 12.1(ii): sqrt(km / (km + d + 2)), jointly over maps and data.
     """
     return float(np.sqrt(km / (km + d + 2)))
 
@@ -45,7 +45,7 @@ def r2_matrix(M: np.ndarray) -> float:
 
 
 def kantorovich_bounds(singvals: np.ndarray) -> tuple[float, float, float]:
-    """(lower, r_2, upper) for r_2(T^T T) from Theorem 7.1(ii).
+    """(lower, r_2, upper) for r_2(T^T T) from Theorem 11.1(ii).
 
     r * 4 kappa^2/(kappa^2+1)^2  <=  r_2  <=  r,  kappa = s_max/s_min over
     the positive singular values.

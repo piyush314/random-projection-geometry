@@ -1,14 +1,15 @@
-"""Theorem 4.4 (anisotropic nonlinear excess): for D = 2 G1^2 + G2^2 observed
+"""Theorem 8.4 (anisotropic nonlinear excess): for D = 2 G1^2 + G2^2 observed
 through U = 2 G1^2, quadratic features achieve canonical rho^2 =
 (246 + 2 sqrt(201))/311 > 4/5.  Verified *symbolically* -- exact equality of
-radicals, not numerics."""
+radicals, not numerics.  The filename retains the number from the earlier
+manuscript layout."""
 
 import sympy as sp
 
 from harness import check
 
 
-@check("Thm 4.4", "nonlinear excess constant, symbolic equality")
+@check("Thm 8.4", "nonlinear excess constant, symbolic equality")
 def run():
     mom = {0: 1, 1: 1, 2: 3, 3: 15, 4: 105}
     A, B = sp.symbols("A B", positive=True)

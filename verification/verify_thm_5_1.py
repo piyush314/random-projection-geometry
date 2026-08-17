@@ -1,6 +1,7 @@
-"""Theorem 5.1: pairwise agreement is the Beta-arcsine law.  Quadrature vs
+"""Theorem 9.1: pairwise agreement is the Beta-arcsine law.  Quadrature vs
 paper Table 3/4 values, and quadrature vs an honest finite-dimensional Monte
-Carlo with per-sample Haar frames."""
+Carlo with per-sample Haar frames.  The filename retains the number from the
+earlier manuscript layout."""
 
 import numpy as np
 
@@ -8,7 +9,7 @@ from harness import FULL, check
 from rpgeom.laws import kendall_tau, pairwise_agreement
 
 
-@check("Thm 5.1", "Beta-arcsine pairwise law: table values + finite-dim MC")
+@check("Thm 9.1", "Beta-arcsine pairwise law: table values + finite-dim MC")
 def run():
     out = []
     p = pairwise_agreement(5, 50)

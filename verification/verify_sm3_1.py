@@ -1,7 +1,8 @@
-"""Theorem SM3.1 (nonasymptotic chance-neighborhood coupling): the density
+"""Appendix Theorem C.1 (nonasymptotic chance-neighborhood coupling): the density
 constant c_r is exact (Fourier inversion attains the sup at the mode), the
 E W_U bound is conservative, and the end-to-end coupling bound holds in a
-direct finite-dimensional simulation."""
+direct finite-dimensional simulation.  The filename retains the standalone-
+supplement number SM3.1."""
 
 import numpy as np
 from scipy import integrate, special
@@ -10,7 +11,7 @@ from harness import FULL, check
 from rpgeom.laws import coupling_delta
 
 
-@check("Thm SM3.1", "explicit coupling: c_r exactness + end-to-end simulation")
+@check("Thm C.1", "explicit coupling: c_r exactness + end-to-end simulation")
 def run():
     rng = np.random.default_rng(9)
     out = []
